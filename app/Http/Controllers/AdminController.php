@@ -88,10 +88,40 @@ class AdminController extends Controller
             return view('admin.show_msg', compact('msgs'));
         } else {
              return redirect('/');
-        }
-        
-        
+        }   
     }
+     
+    public function update($id){
+        $product = Product::find($id);
+        $usertype = Auth::User()->usertype;
+        if($usertype == '1') {
+            return view('admin.update', compact('product'));
+        } else {
+             return redirect('/');
+        }  
+    }
+     
+    //Product Update Confirm
+    public function update_product($id , Request $req){
 
+        $path = './product/img';
+        $product = Product::find($id);
+        
+        $product->name = $req->name;
+        $product->description = $req->description;
+        $product->price = $req->price;
+        $product->category = $req->category;
+        $product->stock = $req->stock;
+        
+       
+        $image= $req->image;
+        // $imageName = time().'.'.$image->getClientOriginalExtension();
+        $imageName = time().'123';
+        $req->image->move($path, $imageName);
+        $product->image = $imageName;
+        
+        $product->save();
+        return redirect('/products');
+    }
 }
 

@@ -4,19 +4,19 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Add Product - Dashboard HTML Template</title>
+    <title>Update Product - Dashboard</title>
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css?family=Roboto:400,700"
     />
     <!-- https://fonts.google.com/specimen/Roboto -->
-    <link rel="stylesheet" href="css/fontawesome.min.css" />
+    <link rel="stylesheet" href="../css/fontawesome.min.css" />
     <!-- https://fontawesome.com/ -->
-    <link rel="stylesheet" href="jquery-ui-datepicker/jquery-ui.min.css" type="text/css" />
+    <link rel="stylesheet" href="../jquery-ui-datepicker/jquery-ui.min.css" type="text/css" />
     <!-- http://api.jqueryui.com/datepicker/ -->
-    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../css/bootstrap.min.css" />
     <!-- https://getbootstrap.com/ -->
-    <link rel="stylesheet" href="css/templatemo-style.css">
+    <link rel="stylesheet" href="../css/templatemo-style.css">
     <!--
 	Product Admin CSS Template
 	https://templatemo.com/tm-524-product-admin
@@ -128,7 +128,7 @@
             </div>
             <div class="row tm-edit-product-row">
               <div class="col-xl-6 col-lg-6 col-md-12">
-                <form action="{{ url('/addproduct')}}" enctype="multipart/form-data"
+                <form action="{{ url('/update_product', $product->id)}}" enctype="multipart/form-data"
                 method="POST" class="tm-edit-product-form">
                   @csrf
                   <div class="form-group mb-3">
@@ -140,6 +140,7 @@
                       id="name"
                       name="name"
                       type="text"
+                      value="{{$product->name}}"
                       class="form-control validate"
                       required
                     />
@@ -154,7 +155,7 @@
                       rows="3"
                       required
                       name="description"
-                    ></textarea>
+                    >{{$product->description}}</textarea>
                   </div>
                   <div class="form-group mb-3">
                     <label
@@ -163,7 +164,7 @@
                     >
                     <select
                       class="custom-select tm-select-accounts"
-                      id="category" name="category"
+                      id="category" name="category" 
                     >
                       <option selected>Select category</option>
                       <option value="1">Women's</option>
@@ -182,6 +183,7 @@
                             name="price"
                             type="number"
                             class="form-control validate"
+                            value="{{$product->price}}"
                             required
                           />
                         </div>
@@ -194,6 +196,7 @@
                             id="stock"
                             name="stock"
                             type="text"
+                            value="{{$product->stock}}"
                             class="form-control validate"
                             required
                           />
@@ -209,7 +212,7 @@
                   ></i>
                 </div>
                 <div class="custom-file mt-3 mb-3">
-                  <input id="fileInput" type="file" style="display: none" name="image"  required />
+                  <input id="fileInput" type="file"  value="{{$product->image}}" style="display: none" name="image"  required />
                   <input
                     type="button"
                     class="btn btn-primary btn-block mx-auto"

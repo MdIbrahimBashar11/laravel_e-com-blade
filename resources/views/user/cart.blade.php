@@ -9,7 +9,7 @@
     <meta name="author" content="">
     <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
 
-    <title>Hexashop - Contact Page</title>
+    <title>Hexashop - Cart Page</title>
 
 
     <!-- Additional CSS Files -->
@@ -91,7 +91,6 @@ https://templatemo.com/tm-571-hexashop
                 <th>Product Name</th>
                 <th>Product Price</th>
                 <th>Product Image</th>
-                <th>Quantity</th>
                 <th>Delete</th>
 
             </tr>
@@ -103,7 +102,11 @@ https://templatemo.com/tm-571-hexashop
                     <img width="100px" height="100px" 
                     src="product/img/{{$product->pd_image}}" alt="IMG">
                 </td>
-                <td>Quantity</td>
+                {{-- <td class="d-flex" style="height: 100%;">
+                    <button class="btn btn-outline-danger">-</button>
+                    <h3 class="mx-3">2</h3>
+                    <button class="btn btn-outline-success">+</button>
+                </td> --}}
                 <td>
                     <a class="btn btn-outline-success"
                      href="{{url('/delete_cart', $product->id)}}">Delete</a>
@@ -111,6 +114,11 @@ https://templatemo.com/tm-571-hexashop
             </tr>
             @endforeach
          </table>
+         <br>
+         <div class="chakout">
+            <br>
+             <a href="{{url('/order')}}" class="btn btn-outline-info">Chackout</a>
+         </div>
     </div>
 
   

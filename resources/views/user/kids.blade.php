@@ -29,7 +29,7 @@
                                                 <i class="fa fa-shopping-cart"></i></a></li>
                                         </ul>
                                     </div>
-                                    <img class="image"src="product/img/{{$pds->image}}" alt="">
+                                    <img class="image" src="product/img/{{$pds->image}}" alt="">
                                 </div>
                                 <div class="down-content">
                                     <h3>{{$pds->name}}</h3>

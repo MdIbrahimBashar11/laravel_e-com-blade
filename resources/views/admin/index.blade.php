@@ -85,11 +85,18 @@
                     </ul>
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link d-block" href="login.html">
-                                Admin, <b>Logout</b>
-                            </a>
+                            Admin, <b>    <form method="POST" action="{{ route('logout') }}">
+                              @csrf
+            
+                              <x-dropdown-link :href="route('logout')" 
+                              onclick="return confirm('You are Suru Log Out')"
+                                      onclick="event.preventDefault();
+                                                  this.closest('form').submit();">
+                                  {{ __('Log Out') }}
+                              </x-dropdown-link>
+                          </form></b>
                         </li>
-                    </ul>
+                      </ul>
                 </div>
             </div>
 

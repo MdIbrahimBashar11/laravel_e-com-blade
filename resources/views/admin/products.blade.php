@@ -98,9 +98,16 @@
           </ul>
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link d-block" href="login.html">
-                Admin, <b>Logout</b>
-              </a>
+                Admin, <b>    <form method="POST" action="{{ route('logout') }}">
+                  @csrf
+
+                  <x-dropdown-link :href="route('logout')" 
+                  onclick="return confirm('You are Suru Log Out')"
+                          onclick="event.preventDefault();
+                                      this.closest('form').submit();">
+                      {{ __('Log Out') }}
+                  </x-dropdown-link>
+              </form></b>
             </li>
           </ul>
         </div>
@@ -120,14 +127,15 @@
                     <th scope="col">IN STOCK</th>
                     <th scope="col">CATEGORY</th>
                     <th scope="col">IMAGE</th>
-                    <th scope="col">&nbsp;</th>
+                    <th scope="col">Delete</th>
+                    <th scope="col">Update</th>
                   </tr>
                 </thead>
                 <tbody>
                 @foreach ($products as $product)
                 <tr>
-                  <th scope="row"><input type="checkbox" /></th>
-                  <td class="tm-product-name">{{$product->name}}</td>
+                  <th scope="row"></th>
+                  <td class="">{{$product->name}}</td>
                   <td>{{$product->price}}</td>
                   <td>{{$product->stock}}</td>
                   <td>{{$product->category}}</td>
@@ -139,6 +147,7 @@
                       <i class="far fa-trash-alt tm-product-delete-icon"></i>
                     </a>
                   </td>
+                  <td scope=""><a class="btn btn-outline-success" href="{{url('/update', $product->id)}}">Update</a></td>
                 </tr>
                 @endforeach
                

@@ -102,15 +102,24 @@ class UserController extends Controller
    }
   
    //Products Detalis
-   public function pd_details($id){
-    $products = Product::find($id);
-     
+    function pd_details($id){
+   
+    $product = Product::find($id);
       if ($id) {
-        return view('user.single_pd', compact('products'));
+        return view('user.single_pd', compact('product'));
       } else{
           return redirect('/');
       }
      }
    
+      public function order() {
+        if (Auth::id()) {
+          $id = Auth::user()->id;
+        $products = cart::where('user_id', '=', $id)->get();
+        return view('user.Order', compact('products'));
+        } else{
+            return redirect('register');
+        }
+      }
 
 }

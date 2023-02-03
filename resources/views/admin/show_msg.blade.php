@@ -68,7 +68,7 @@
                 </div>
               </li>
               <li class="nav-item">
-                <a class="nav-link " href="products.html">
+                <a class="nav-link " href="{{url('/products')}}">
                   <i class="fas fa-shopping-cart"></i> Products
                 </a>
               </li>
@@ -100,9 +100,16 @@
             </ul>
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link d-block" href="login.html">
-                  Admin, <b>Logout</b>
-                </a>
+                  Admin, <b>    <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+  
+                    <x-dropdown-link :href="route('logout')" 
+                    onclick="return confirm('You are Suru Log Out')"
+                            onclick="event.preventDefault();
+                                        this.closest('form').submit();">
+                        {{ __('Log Out') }}
+                    </x-dropdown-link>
+                </form></b>
               </li>
             </ul>
           </div>
@@ -114,11 +121,12 @@
             <div class="row tm-content-row">
                 {{-- <h3 class="text-center">Message</h3> --}}
               <div class="col-10 mx-auto tm-block-col">
+                <h3 class="text-center">{{$msgs->user_name}}</h3>
                 <div class="tm-bg-primary-dark tm-block tm-block-h-auto">
-                     @foreach ($msgs as $msg)
-                        <h1>{{$msg->user_email}}</h1>
-                        <h1>{{$msg->user_name}}</h1>
-                     @endforeach
+                       
+                     <div class="">
+                        <p class="user_msg">{{$msgs->message}}</p>
+                     </div>
                 </div>
               </div>
             </div>
@@ -147,3 +155,58 @@
     </script>
   </body>
 </html>
+
+
+<style>
+   .user_msg{
+     background-color: rgb(74, 74, 216);
+     border-radius: 10px;
+     background-size: cover;
+     padding: 4px 8px;
+     color: #fff;
+
+   }
+   
+/* .container {
+  border: 2px solid #dedede;
+  background-color: #f1f1f1;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px 0;
+} */
+
+.darker {
+  border-color: #ccc;
+  background-color: #ddd;
+}
+
+.container::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.container img {
+  float: left;
+  max-width: 60px;
+  width: 100%;
+  margin-right: 20px;
+  border-radius: 50%;
+}
+
+.container img.right {
+  float: right;
+  margin-left: 20px;
+  margin-right:0;
+}
+
+.time-right {
+  float: right;
+  color: #aaa;
+}
+
+.time-left {
+  float: left;
+  color: #999;
+}
+</style>
